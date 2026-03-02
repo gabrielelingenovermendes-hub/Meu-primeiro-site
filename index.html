@@ -1,11 +1,391 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 Galeria Infantil · 50 Atividades</title>
+    <style>
+        /* === FONTE DIVERTIDA === */
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f9eec1 0%, #fff2d8 100%);
+            font-family: 'Baloo 2', cursive;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+
+        /* cabeçalho brincante */
+        .cabecalho-galeria {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .cabecalho-galeria h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #3b2b7a;
+            text-shadow: 6px 6px 0px #ffb347, 3px 3px 0 white;
+            letter-spacing: 2px;
+            word-break: break-word;
+        }
+
+        .cabecalho-galeria p {
+            font-size: 1.8rem;
+            color: #c43e7a;
+            background: #fffef7;
+            display: inline-block;
+            padding: 0.5rem 2.2rem;
+            border-radius: 60px;
+            box-shadow: 0 8px 0 #bc9b5b;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* grade 5x10 = 50 espaços */
+        .grade-magica {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);  /* 5 colunas */
+            gap: 1.3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        /* cartão de atividade */
+        .cartao-atividade {
+            background-color: #ffffffdd;
+            backdrop-filter: blur(4px);
+            border-radius: 30px 30px 25px 25px;
+            padding: 0.8rem 0.8rem 1.2rem 0.8rem;
+            box-shadow: 0 12px 0 #c3a0d9, 0 6px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.18s ease, box-shadow 0.2s;
+            border: 3px solid #fcd36a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cartao-atividade:hover {
+            transform: scale(1.02) translateY(-5px);
+            box-shadow: 0 15px 0 #b28bce, 0 10px 25px rgba(0, 0, 0, 0.25);
+            border-color: #f8b84a;
+        }
+
+        /* todas as imagens com tamanho fixo e redondinhas */
+        .cartao-atividade img {
+            width: 100%;
+            aspect-ratio: 1 / 1;  /* quadradinho perfeito */
+            object-fit: cover;     /* cobre todo o espaço sem distorcer */
+            border-radius: 25px;
+            background: #fdeec9;
+            border: 4px solid white;
+            box-shadow: inset 0 0 0 2px #ffb58a, 0 4px 8px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        /* pequeno texto lúdico (opcional para dar contexto) */
+        .legenda-brincadeira {
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #3f2b4d;
+            background: #fef6d5;
+            width: 100%;
+            text-align: center;
+            border-radius: 30px;
+            padding: 0.2rem 0;
+            border: 2px dashed #fa9e8c;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* mensagem extra responsiva */
+        .rodape-brincadeira {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 1.7rem;
+            color: #1f5e4d;
+            background: #ffedb5;
+            padding: 0.7rem 2rem;
+            border-radius: 100px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border: 3px solid white;
+            box-shadow: 0 6px 0 #ab8e5a;
+            font-weight: 600;
+        }
+
+        /* pequeno ajuste para telas menores */
+        @media (max-width: 900px) {
+            .grade-magica {
+                grid-template-columns: repeat(4, 1fr); /* 4 colunas = 48 itens? melhor manter 50 mas adaptamos */
+                gap: 1rem;
+            }
+            .cabecalho-galeria h1 { font-size: 2.5rem; }
+        }
+        @media (max-width: 700px) {
+            .grade-magica {
+                grid-template-columns: repeat(3, 1fr); /* ainda aparecem 48, mas continuamos com 50 linhas */
+            }
+        }
+        @media (max-width: 480px) {
+            .grade-magica {
+                grid-template-columns: repeat(2, 1fr); /* 50 imagens viram muitas linhas, mas grade mantém */
+            }
+            .cabecalho-galeria h1 { font-size: 2rem; }
+        }
+
+        /* como vão ser 50 imagens, usamos placeholders com temas infantis */
+        /* (todos os links são públicos do placekitten, placebear, placedog e pixabay - mas com filtro divertido) */
+        /* escolhi imagens amigáveis com tema de criança: bichinhos, brinquedos, natureza */
+    </style>
 </head>
 <body>
-    eu nao sei oque estou fazendo 
+    <div class="cabecalho-galeria">
+        <h1>🧸 50 ATIVIDADES 🎨</h1>
+        <p>clique nos quadrinhos para ideias 🧩</p>
+    </div>
+
+    <!-- grade principal com exatamente 50 imagens (5 colunas x 10 linhas) -->
+    <div class="grade-magica">
+        <!-- 1 a 5 -->
+        <div class="cartao-atividade">
+            <img src="https://placekitten.com/300/300?image=1" alt="gatinho fofo">
+            <span class="legenda-brincadeira">🐱 fazer carinho</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placekitten.com/301/301?image=2" alt="gato curioso">
+            <span class="legenda-brincadeira">🧶 brincar com lã</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placekitten.com/302/302?image=3" alt="filhote">
+            <span class="legenda-brincadeira">📸 fotografia pet</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placekitten.com/303/303?image=4" alt="gatinho siamês">
+            <span class="legenda-brincadeira">🎭 desenhar gatos</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placekitten.com/304/304?image=5" alt="gato malhado">
+            <span class="legenda-brincadeira">🧩 quebra-cabeça</span>
+        </div>
+
+        <!-- 6 a 10 -->
+        <div class="cartao-atividade">
+            <img src="https://placedog.net/300/300?random=1" alt="cachorro feliz">
+            <span class="legenda-brincadeira">🐶 passear com cão</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placedog.net/301/301?random=2" alt="cão pastor">
+            <span class="legenda-brincadeira">🦴 esconder ossinho</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placedog.net/302/302?random=3" alt="cão peludo">
+            <span class="legenda-brincadeira">🎾 jogar bola</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placedog.net/303/303?random=4" alt="labrador">
+            <span class="legenda-brincadeira">🌭 fazer biscoitos</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placedog.net/304/304?random=5" alt="cão filhote">
+            <span class="legenda-brincadeira">🧼 dar banho</span>
+        </div>
+
+        <!-- 11 a 15 (ursos) -->
+        <div class="cartao-atividade">
+            <img src="https://placebear.com/300/300?image=1" alt="ursinho">
+            <span class="legenda-brincadeira">🧸 chá de pelúcia</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placebear.com/301/301?image=2" alt="urso pardo">
+            <span class="legenda-brincadeira">🍯 caça ao mel</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placebear.com/302/302?image=3" alt="urso a brincar">
+            <span class="legenda-brincadeira">🎣 pescaria divertida</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placebear.com/303/303?image=4" alt="urso polar">
+            <span class="legenda-brincadeira">❄️ pintar gelo</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://placebear.com/304/304?image=5" alt="ursa com filhote">
+            <span class="legenda-brincadeira">📖 história de ursos</span>
+        </div>
+
+        <!-- 16 a 20 (paisagens infantis) -->
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?grayscale&seed=play1" alt="natureza">
+            <span class="legenda-brincadeira">🌳 piquenique</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=play2&grayscale" alt="campo">
+            <span class="legenda-brincadeira">🌼 colher flores</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=play3&grayscale" alt="mar">
+            <span class="legenda-brincadeira">🐚 conchinhas</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=play4&grayscale" alt="montanha">
+            <span class="legenda-brincadeira">🏕️ acampar na sala</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=play5&grayscale" alt="neve">
+            <span class="legenda-brincadeira">⛄ boneco de neve</span>
+        </div>
+
+        <!-- 21 a 25 (imagens lúdicas com patos e coelhos) - usando placeholder personalizado via cloudimage ou picsum -->
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=duck1" alt="pato amarelo">
+            <span class="legenda-brincadeira">🦆 patinhos na lagoa</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=duck2" alt="pato">
+            <span class="legenda-brincadeira">🥖 alimentar patos</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=rabbit1" alt="coelho">
+            <span class="legenda-brincadeira">🐇 cenoura mágica</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=rabbit2" alt="coelho branco">
+            <span class="legenda-brincadeira">🎩 cartola de coelho</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=elephant" alt="elefante">
+            <span class="legenda-brincadeira">🐘 banho de mangueira</span>
+        </div>
+
+        <!-- 26 a 30 (mais bichos) -->
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=monkey" alt="macaco">
+            <span class="legenda-brincadeira">🐒 imitar macaquinhos</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=giraffe" alt="girafa">
+            <span class="legenda-brincadeira">🦒 medir alturas</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=zebra" alt="zebra">
+            <span class="legenda-brincadeira">🦓 pintar listras</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=lion" alt="leão">
+            <span class="legenda-brincadeira">🦁 juba de papel</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=tiger" alt="tigre">
+            <span class="legenda-brincadeira">🐯 caça ao tesouro</span>
+        </div>
+
+        <!-- 31 a 35 (brinquedos) -->
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=blocks" alt="blocos">
+            <span class="legenda-brincadeira">🧱 construir torre</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=car" alt="carrinho">
+            <span class="legenda-brincadeira">🏎️ corrida de carrinhos</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=doll" alt="boneca">
+            <span class="legenda-brincadeira">🎎 chá das bonecas</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=ball" alt="bola colorida">
+            <span class="legenda-brincadeira">⚽ jogar bola</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=kite" alt="pipa">
+            <span class="legenda-brincadeira">🪁 soltar pipa</span>
+        </div>
+
+        <!-- 36 a 40 (artes) -->
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=paint1" alt="tintas">
+            <span class="legenda-brincadeira">🎨 pintura com dedos</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=paint2" alt="pincéis">
+            <span class="legenda-brincadeira">🖌️ aquarela</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=clay" alt="massinha">
+            <span class="legenda-brincadeira">🧼 modelar massinha</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=glitter" alt="glitter">
+            <span class="legenda-brincadeira">✨ colagem brilhante</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=origami" alt="dobradura">
+            <span class="legenda-brincadeira">🦢 origami simples</span>
+        </div>
+
+        <!-- 41 a 45 (música e movimento) -->
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=music1" alt="pandeiro">
+            <span class="legenda-brincadeira">🥁 banda rítmica</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=music2" alt="xilofone">
+            <span class="legenda-brincadeira">🎵 cantar canções</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=dance" alt="crianças dançando">
+            <span class="legenda-brincadeira">💃 dança das cadeiras</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=yoga" alt="criança yoga">
+            <span class="legenda-brincadeira">🧘 postura de árvore</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=balloon" alt="balões">
+            <span class="legenda-brincadeira">🎈 estourar bolhas</span>
+        </div>
+
+        <!-- 46 a 50 (brincadeiras calmas) -->
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=reading" alt="livro infantil">
+            <span class="legenda-brincadeira">📚 hora da leitura</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=puzzle" alt="quebra-cabeça">
+            <span class="legenda-brincadeira">🧩 montar puzzle</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=fort" alt="forte de almofadas">
+            <span class="legenda-brincadeira">🏰 cabana de lençol</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=stars" alt="noite estrelada">
+            <span class="legenda-brincadeira">⭐ contar estrelas</span>
+        </div>
+        <div class="cartao-atividade">
+            <img src="https://picsum.photos/300/300?seed=kitchen" alt="criança cozinhando">
+            <span class="legenda-brincadeira">🧁 decorar cupcakes</span>
+        </div>
+        <!-- pronto! 50 imagens exatas -->
+    </div>
+
+    <div class="rodape-brincadeira">
+        🧽 50 atividades prontas para imprimir 🌟
+    </div>
+
+    <!-- pequeno aviso sobre os links (são placeholders) -->
+    <div style="text-align: center; margin-top: 1.8rem; font-size: 1.2rem; color: #7b5e3b; opacity: 0.8;">
+        ⭐ imagens ilustrativas (placekitten, placedog, placebear, picsum)
+    </div>
 </body>
 </html>
